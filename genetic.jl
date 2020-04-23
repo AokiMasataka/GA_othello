@@ -9,7 +9,7 @@ mutable struct DNA
 end
 
 function initialGenerat(mutationRate::Float64)::DNA
-    popul::Int32 = 40
+    popul::Int32 = 10
     dna  = DNA(randn(Float32, 20 + 1, popul)', popul, mutationRate)
     return dna
 end

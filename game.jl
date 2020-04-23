@@ -85,6 +85,10 @@ function legalAction(self::Var, x::Int8, y::Int8)::Bool
 end
 
 function show(self::Var)
+    for i in 1:self.size
+        print(i, " ")
+    end
+    println()
     for i in 1: self.size
         for j in 1: self.size
             if self.state[i, j] == 1
@@ -95,8 +99,9 @@ function show(self::Var)
                 print("* ")
             end
         end
-    println()
+        println(i)
     end
+    println()
 end
 
 end

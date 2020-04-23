@@ -87,40 +87,6 @@ function selfPlay(first::Array{Float32, 1}, behind::Array{Float32, 1})::Int8
     end
 end
 
-function play(genom::Array{Float32, 1})
-    size::Int8 = 8
-    self = Game.init(size)
-
-    while true
-        if Game.isDone(self) break end
-
-        actions::Array{Int8, 1} = Game.getLegalAction(self)
-
-        if length(actions) > 0
-            state::Array{Int8, 2} = copy(self.state)
-            points::Array{Float32, 1} = []
-            for action::Int8 in actions
-                Game.action(self, action)
-                if self.player == -1
-                    if abs(genom[21]) < turn
-                        append!(points, Tool.getPoint(self.state, genom[1:10], self.player))
-                    else
-                        append!(points, Tool.getPoint(self.state, genom[11:20], self.player))
-                    end
-                else
-                    s = 0
-                end
-
-                self.state = copy(state)
-            end
-            Game.action(self, actions[argmax(points)])
-            self.player = 0 - self.player
-            turn += 1
-
-        else self.player = 0 - self.player end
-    end
-end
-
 function save(genom::Array{Float32, 2})
 end
 
